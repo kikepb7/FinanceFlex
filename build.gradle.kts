@@ -1,0 +1,24 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+
+    // Hilt
+    id("com.google.dagger.hilt.android") version "2.51" apply false
+
+    // Firebase
+    id("com.google.gms.google-services") version "4.4.1" apply false
+}
+
+buildscript {
+    repositories {
+        google()
+    }
+
+    dependencies {
+        val navVersion = "2.7.7"
+        val hiltVersion = "2.51"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
+    }
+}

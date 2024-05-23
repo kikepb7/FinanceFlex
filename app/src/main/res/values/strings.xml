@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FinanceFlex</string>
+    <string name="unexpected_error">Unexpected error!</string>
+</resources>
