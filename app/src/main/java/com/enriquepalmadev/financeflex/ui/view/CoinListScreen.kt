@@ -14,11 +14,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,17 +36,17 @@ fun CoinListScreen(
     state: CoinListScreenState,
     navController: NavController,
 ) {
+
     if (state.loadingScreenData.loader) {
-        if (state.loadingScreenData.loader) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            LoadingScreen()
         }
     }
+
 
     state.errorScreenData?.let {
         Box(
@@ -56,27 +54,30 @@ fun CoinListScreen(
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-//            ErrorScreen()
+            ErrorScreen(
+                coinListScreenError = CoinListScreenError(
+                    image = it.image,
+                    errorMsg = it.errorMsg
+                )
+            )
         }
     }
 
-
-        LazyColumn {
-            state.coinScreenData?.coinListModel?.let {
-                items(it.coinsModel) { coin ->
-                    CoinListItem(
-                        coinItemModel = coin,
-                        navController = navController,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-        //                            navController.navigate("${AppScreens.CoinDetailScreen.route}/${coin.id}")
-                            }
-                    )
-
-                }
+    LazyColumn {
+        state.coinScreenData?.coinListModel?.let {
+            items(it.coinsModel) { coin ->
+                CoinListItem(
+                    coinItemModel = coin,
+                    navController = navController,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            navController.navigate("${AppScreens.CoinDetailScreen.route}/${coin.coin.id}")
+                        }
+                )
             }
         }
+    }
 }
 
 @Composable

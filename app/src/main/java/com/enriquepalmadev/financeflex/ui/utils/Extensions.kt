@@ -9,22 +9,22 @@ fun FailureDomain.toComicListScreenError(): CoinListScreenError {
     return when (this) {
         is FailureDomain.ApiError -> {
             CoinListScreenError(
-                image = R.drawable.ic_launcher_background, // TODO --> Cambiarlo
-                errorMsg = R.string.unexpected_error // TODO --> Cambiarlo
+                image = R.drawable.error_logo,
+                errorMsg = R.string.api_error
             )
         }
 
         is FailureDomain.Unauthorized -> {
             CoinListScreenError(
-                image = R.drawable.ic_launcher_background, // TODO --> Cambiarlo
-                errorMsg = R.string.unexpected_error // TODO --> Cambiarlo
+                image = R.drawable.error_logo,
+                errorMsg = R.string.authentication_error
             )
         }
 
         is FailureDomain.UnknownHostError -> {
             CoinListScreenError(
-                image = R.drawable.ic_launcher_background, // TODO --> Cambiarlo
-                errorMsg = R.string.unexpected_error // TODO --> Cambiarlo
+                image = R.drawable.error_logo,
+                errorMsg = R.string.unexpected_error
             )
         }
     }
@@ -32,14 +32,14 @@ fun FailureDomain.toComicListScreenError(): CoinListScreenError {
 
 fun Throwable.toComicListScreenError(): CoinListScreenError {
     return CoinListScreenError(
-        image = R.drawable.ic_launcher_background, // TODO --> Cambiarlo
-        errorMsg = R.string.unexpected_error // TODO --> Cambiarlo
+        image = R.drawable.error_logo,
+        errorMsg = R.string.exception_error
     )
 }
 
 fun toEmptyListModel(): CoinListScreenEmpty {
     return CoinListScreenEmpty(
-        image = R.drawable.ic_launcher_background, // TODO --> Cambiarlo
-        emptyMessage = R.string.unexpected_error // TODO --> Cambiarlo
+        image = R.drawable.ic_launcher_background,
+        emptyMessage = R.string.empty_list_error
     )
 }

@@ -1,7 +1,9 @@
 package com.enriquepalmadev.financeflex.data.utils
 
+import com.enriquepalmadev.financeflex.data.dto.CoinDetailDto
 import com.enriquepalmadev.financeflex.data.dto.CoinDto
 import com.enriquepalmadev.financeflex.data.dto.FailureDto
+import com.enriquepalmadev.financeflex.domain.model.CoinDetailModel
 import com.enriquepalmadev.financeflex.domain.model.CoinModel
 import com.enriquepalmadev.financeflex.domain.model.FailureDomain
 
@@ -26,5 +28,18 @@ fun CoinDto.dtoToCoinModel(): CoinModel {
         name = name,
         rank = rank,
         symbol = symbol
+    )
+}
+
+fun CoinDetailDto.dtoToCoinDetailModel(): CoinDetailModel {
+    return CoinDetailModel(
+        coinId = id,
+        name = name,
+        description = description,
+        symbol = symbol,
+        rank = rank,
+        isActive = isActive,
+        tags = tags.map { it.name },
+        team = team
     )
 }

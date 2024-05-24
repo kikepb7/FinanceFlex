@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FinanceFlex</string>
     <string name="unexpected_error">Unexpected error!</string>
+    <string name="authentication_error">Authentication error!</string>
+    <string name="api_error">API error!</string>
+    <string name="exception_error">There\'s an error ... !</string>
+    <string name="empty_list_error">Seems like there\'re not elements to show ...</string>
 </resources>

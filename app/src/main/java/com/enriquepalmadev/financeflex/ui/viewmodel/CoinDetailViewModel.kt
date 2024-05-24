@@ -2,15 +2,13 @@ package com.enriquepalmadev.financeflex.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.enriquepalmadev.financeflex.domain.model.CoinModel
+import com.enriquepalmadev.financeflex.domain.model.CoinDetailModel
 import com.enriquepalmadev.financeflex.domain.model.Either
 import com.enriquepalmadev.financeflex.domain.model.FailureDomain
-import com.enriquepalmadev.financeflex.domain.usecase.FetchCoinListUseCase
-import com.enriquepalmadev.financeflex.ui.model.CoinListModel
-import com.enriquepalmadev.financeflex.ui.model.CoinListScreenItemModel
+import com.enriquepalmadev.financeflex.domain.usecase.FetchCoinDetailUseCase
+import com.enriquepalmadev.financeflex.ui.model.CoinDetailScreenModel
+import com.enriquepalmadev.financeflex.ui.model.CoinDetailScreenState
 import com.enriquepalmadev.financeflex.ui.model.CoinListScreenLoading
-import com.enriquepalmadev.financeflex.ui.model.CoinListScreenModel
-import com.enriquepalmadev.financeflex.ui.model.CoinListScreenState
 import com.enriquepalmadev.financeflex.ui.utils.toComicListScreenError
 import com.enriquepalmadev.financeflex.ui.utils.toEmptyListModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,29 +22,30 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinListViewModel @Inject constructor(
-    private val fetchCoinListUseCase: FetchCoinListUseCase
-): ViewModel() {
+class CoinDetailViewModel @Inject constructor(
+    private val fetchCoinDetailUseCase: FetchCoinDetailUseCase
+) : ViewModel() {
 
-    private val _state = MutableStateFlow(CoinListScreenState())
-    val state: StateFlow<CoinListScreenState?> = _state.asStateFlow()
+    private val _state = MutableStateFlow(CoinDetailScreenState())
+    val state: StateFlow<CoinDetailScreenState?> = _state.asStateFlow()
 
     private val _event = MutableStateFlow<Event?>(null)
     val event: StateFlow<Event?> = _event.asStateFlow()
 
-    init {
-        getCoinList()
-    }
-
-    private fun getCoinList() {
+    fun getCoinDetail(coinId: String) {
         viewModelScope.launch {
-            fetchCoinListUseCase.fetchCoinList()
+            fetchCoinDetailUseCase.fetchCoinDetail(coinId = coinId)
                 .onStart { manageLoading() }
                 .catch { throwableError -> manageError(throwableError = throwableError) }
                 .collect { result ->
                     when (result) {
-                        is Either.Failure -> { manageFailure(error = result.error) }
-                        is Either.Success -> { manageSuccess(result.data) }
+                        is Either.Failure -> {
+                            manageFailure(error = result.error)
+                        }
+
+                        is Either.Success -> {
+                            manageSuccess(result.data)
+                        }
                     }
                 }
         }
@@ -78,12 +77,12 @@ class CoinListViewModel @Inject constructor(
         }
     }
 
-    private fun manageSuccess(data: List<CoinModel>?) {
-        if (!data.isNullOrEmpty()) {
+    private fun manageSuccess(data: CoinDetailModel?) {
+        if (data != null) {
             _state.update { coinScreenState ->
                 coinScreenState.copy(
-                    coinScreenData = CoinListScreenModel(
-                        coinListModel = CoinListModel(coinsModel = data.map { CoinListScreenItemModel(coin = it) }) //TODO --> Error, recibe null
+                    coinDetailScreenData = CoinDetailScreenModel(
+                        coinDetail = data
                     ),
                     loadingScreenData = CoinListScreenLoading(loader = false)
                 )
@@ -101,11 +100,4 @@ class CoinListViewModel @Inject constructor(
             )
         }
     }
-}
-
-// Different possible events
-sealed class Event {
-    data class NavigateToDetail(val comicId: Int) : Event()
-    data object NavigateToHome : Event()
-    data object Idle : Event()
 }
