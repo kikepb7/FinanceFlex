@@ -57,10 +57,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+    implementation(libs.firebase.auth)
     val liveDataVersion = "2.7.0"
     val fragmentVersion = "1.6.2"
     val navVersion = "2.7.7"
-    val glideVersion = "4.16.0"
     val retrofitVersion = "2.10.0"
     val interceptorVersion = "4.12.0"
     val hiltVersion = "2.51"
@@ -77,6 +78,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation(libs.play.services.auth)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -101,8 +106,8 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.6.0-alpha01")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.24.2-alpha")
 
-    // GLIDE
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    // COIL
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     // RETROFIT & MOSHI
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
@@ -139,5 +144,6 @@ dependencies {
     // FIREBASE BOM
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
 }

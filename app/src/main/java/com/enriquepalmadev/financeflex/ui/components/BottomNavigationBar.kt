@@ -31,6 +31,11 @@ val items = listOf(
     ),
 
     BottomNavigation(
+        title = "Account",
+        icon = Icons.Rounded.AccountCircle
+    ),
+
+    BottomNavigation(
         title = "Wallet",
         icon = Icons.Rounded.Wallet
     ),
@@ -39,11 +44,6 @@ val items = listOf(
         title = "Notifications",
         icon = Icons.Rounded.Notifications
     ),
-
-    BottomNavigation(
-        title = "Account",
-        icon = Icons.Rounded.AccountCircle
-    )
 )
 
 @Composable
@@ -60,6 +60,7 @@ fun BottomNavigationBar(
                     onClick = {
                         when (index) {
                             0 -> navigation.navigate(AppScreens.HomeScreen.route)
+                            1 -> navigation.navigate(AppScreens.ProfileScreen.route)
 //                            1 -> navigation.navigate(AppScreens.WalletScreen.route)
 //                            2 -> navigation.navigate(AppScreens.NotificationScreen.route)
 //                            3 -> navigation.navigate(AppScreens.AccountScreen.route)

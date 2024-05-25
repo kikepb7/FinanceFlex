@@ -20,5 +20,6 @@ buildscript {
         val hiltVersion = "2.51"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
+        classpath("com.google.gms:google-services:4.4.1")
     }
 }

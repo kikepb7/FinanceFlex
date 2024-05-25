@@ -1,9 +1,9 @@
 package com.enriquepalmadev.financeflex.ui.utils
 
 import com.enriquepalmadev.financeflex.R
-import com.enriquepalmadev.financeflex.domain.model.FailureDomain
-import com.enriquepalmadev.financeflex.ui.model.CoinListScreenEmpty
-import com.enriquepalmadev.financeflex.ui.model.CoinListScreenError
+import com.enriquepalmadev.financeflex.domain.coin_feature.model.FailureDomain
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenEmpty
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenError
 
 fun FailureDomain.toComicListScreenError(): CoinListScreenError {
     return when (this) {
