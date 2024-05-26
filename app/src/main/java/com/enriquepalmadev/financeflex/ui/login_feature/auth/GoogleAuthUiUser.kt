@@ -1,9 +1,11 @@
-package com.enriquepalmadev.financeflex.ui.sign_in
+package com.enriquepalmadev.financeflex.ui.login_feature.auth
 
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import com.enriquepalmadev.financeflex.R
+import com.enriquepalmadev.financeflex.ui.login_feature.model.LoginResult
+import com.enriquepalmadev.financeflex.ui.login_feature.model.UserData
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.firebase.Firebase
@@ -32,14 +34,14 @@ class GoogleAuthUiUser(
         return result?.pendingIntent?.intentSender
     }
 
-    suspend fun signInWithIntent(intent: Intent): SignInResult {
+    suspend fun signInWithIntent(intent: Intent): LoginResult {
         val credential = oneTapClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
 
         return try {
             val user = auth.signInWithCredential(googleCredentials).await().user
-            SignInResult(
+            LoginResult(
                 data = user?.run {
                     UserData(
                         userId = uid,
@@ -52,7 +54,7 @@ class GoogleAuthUiUser(
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is CancellationException) throw e
-            SignInResult(
+            LoginResult(
                 data = null,
                 errorMessage = e.message
             )

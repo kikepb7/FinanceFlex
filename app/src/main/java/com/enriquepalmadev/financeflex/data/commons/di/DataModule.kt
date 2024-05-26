@@ -72,5 +72,4 @@ object DataModule {
             return CoinRepositoryImpl(coinRemoteDataSource)
 
         }
-
 }

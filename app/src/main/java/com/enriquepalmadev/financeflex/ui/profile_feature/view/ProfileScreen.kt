@@ -1,4 +1,4 @@
-package com.enriquepalmadev.financeflex.ui.profile
+package com.enriquepalmadev.financeflex.ui.profile_feature.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.enriquepalmadev.financeflex.ui.sign_in.UserData
+import com.enriquepalmadev.financeflex.ui.login_feature.model.UserData
 
 @Composable
 fun ProfileScreen(

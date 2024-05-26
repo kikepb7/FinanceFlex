@@ -22,10 +22,10 @@ import com.enriquepalmadev.financeflex.ui.coin_feature.view.CoinListScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.view.HomeScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinDetailViewModel
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinListViewModel
-import com.enriquepalmadev.financeflex.ui.profile.ProfileScreen
-import com.enriquepalmadev.financeflex.ui.sign_in.GoogleAuthUiUser
-import com.enriquepalmadev.financeflex.ui.sign_in.view.SignInScreen
-import com.enriquepalmadev.financeflex.ui.sign_in.viewmodel.SignInViewModel
+import com.enriquepalmadev.financeflex.ui.profile_feature.view.ProfileScreen
+import com.enriquepalmadev.financeflex.ui.login_feature.auth.GoogleAuthUiUser
+import com.enriquepalmadev.financeflex.ui.login_feature.view.LoginScreen
+import com.enriquepalmadev.financeflex.ui.login_feature.viewmodel.LoginViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -44,17 +44,8 @@ fun AppNavigation() {
 
     NavHost(navController = navController, startDestination = AppScreens.SignInScreen.route) {
         composable(route = AppScreens.SignInScreen.route) {
-            val viewModel = viewModel<SignInViewModel>()
+            val viewModel = viewModel<LoginViewModel>()
             val state by viewModel.state.collectAsState()
-
-            /* LaunchedEffect(
-                 key1 = Unit
-             ) {
-                 if (googleAuthUiUser.getSignedInUser() != null) {
-                     navController.navigate(AppScreens.ProfileScreen.route)
-                 }
-             }*/
-
 
             val launcher = rememberLauncherForActivityResult(
                 contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -79,7 +70,7 @@ fun AppNavigation() {
                 }
             }
 
-            SignInScreen(
+            LoginScreen(
                 state = state,
                 navController = navController,
                 onSignInClick = {

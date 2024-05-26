@@ -1,6 +1,6 @@
-package com.enriquepalmadev.financeflex.ui.sign_in
+package com.enriquepalmadev.financeflex.ui.login_feature.model
 
-data class SignInResult(
+data class LoginResult(
     val data: UserData?,
     val errorMessage: String?
 )

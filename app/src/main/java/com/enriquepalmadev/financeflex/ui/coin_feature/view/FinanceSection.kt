@@ -73,7 +73,6 @@ fun FinanceSection(navController: NavController) {
             .padding(top = 16.dp)
     ) {
 
-
         LazyRow {
             items(financeList.size) {
                 FinanceItem(it, navController)
