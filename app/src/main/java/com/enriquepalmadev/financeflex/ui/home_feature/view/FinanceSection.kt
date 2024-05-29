@@ -1,4 +1,4 @@
-package com.enriquepalmadev.financeflex.ui.coin_feature.view
+package com.enriquepalmadev.financeflex.ui.home_feature.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.enriquepalmadev.financeflex.ui.navigation.AppScreens
+import com.enriquepalmadev.financeflex.ui.utils.navigation.AppScreens
 import com.enriquepalmadev.financeflex.ui.theme.BlueStart
 import com.enriquepalmadev.financeflex.ui.theme.GreenStart
 import com.enriquepalmadev.financeflex.ui.theme.OrangeStart

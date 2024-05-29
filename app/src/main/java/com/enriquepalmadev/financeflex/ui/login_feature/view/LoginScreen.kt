@@ -1,6 +1,5 @@
 package com.enriquepalmadev.financeflex.ui.login_feature.view
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -14,16 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,172 +25,181 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import com.enriquepalmadev.financeflex.R
+import com.enriquepalmadev.financeflex.ui.utils.components.CustomButton
+import com.enriquepalmadev.financeflex.ui.utils.components.CustomOutlinedTextField
+import com.enriquepalmadev.financeflex.ui.login_feature.model.TextFieldData
 import com.enriquepalmadev.financeflex.ui.login_feature.viewmodel.SignInState
-import com.enriquepalmadev.financeflex.ui.theme.BlueStart
 
 @Composable
 fun LoginScreen(
     state: SignInState,
     navController: NavController,
-    onSignInClick: () -> Unit
+    onEmailSignInClick: (String, String) -> Unit,
+    onGoogleSignInClick: () -> Unit
 ) {
 
     var email by remember { mutableStateOf("") }
-    var isEmailValid by remember { mutableStateOf(false) }
-
-    val context = LocalContext.current
-    LaunchedEffect(key1 = state.signInError) {
-        state.signInError?.let { error ->
-            Toast.makeText(
-                context,
-                error,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+    var password by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 64.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = "App logo",
-                modifier = Modifier.size(100.dp)
+        LogoAndTitle(stringResource(id = R.string.app_name))
+        WelcomeText(
+            title = stringResource(R.string.login_welcome_back),
+            text = stringResource(R.string.login_enter_your_details)
+        )
+        SignInOrSignUp(
+            signIn = stringResource(R.string.sign_in),
+            signUp = stringResource(R.string.sign_up)
+        )
+        CustomOutlinedTextField(
+            textFieldData = TextFieldData(
+                value = email,
+                onValueChange = { email = it },
+                label = stringResource(R.string.email_label),
+                isEmailValid = true,
+                isPasswordField = false
             )
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Text(
-                text = "FinanceFlex",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.SemiBold,
-                fontFamily = FontFamily.Monospace,
-                color = Color.Black
+        )
+        CustomOutlinedTextField(
+            textFieldData = TextFieldData(
+                value = password,
+                onValueChange = { password = it },
+                label = stringResource(R.string.password_label),
+                isEmailValid = false,
+                isPasswordField = true
             )
-        }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        CustomButton { onEmailSignInClick(email, password) }
+        SocialSignIn(
+            text = stringResource(R.string.login_continue_with),
+            onSignInClick = { onGoogleSignInClick() }
+        )
+        Spacer(modifier = Modifier.height(32.dp))
+        InformativeText(text = stringResource(R.string.login_informative_text))
+    }
+}
 
+@Composable
+fun LogoAndTitle(
+    appName: String,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 64.dp),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "App logo",
+            modifier = Modifier.size(100.dp)
+        )
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Text(
+            text = appName,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = FontFamily(Font(R.font.merienda)),
+            color = Color.Black
+        )
+    }
+}
+
+@Composable
+fun WelcomeText(
+    title: String,
+    text: String
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Spacer(modifier = Modifier.height(64.dp))
 
         Text(
-            text = "Welcome Back",
+            text = title,
             fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily(Font(R.font.breeserif))
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Please enter Your details",
+            text = text,
             color = Color.Gray,
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            fontFamily = FontFamily(Font(R.font.breeserif))
         )
+    }
+}
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            TextButton(
-                onClick = { }
-            ) {
-                Text(
-                    text = "Sign In",
-                    color = Color.Black
-                )
-            }
-            TextButton(
-                onClick = { }
-            ) {
-                Text(
-                    text = "Signup",
-                    color = Color.Gray
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = email,
-            onValueChange = {
-                email = it
-                isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches()
-            },
-            label = {
-                Text(
-                    text = "Email Address",
-                    fontSize = 12.sp,
-                    color = Color.Black
-                )
-            },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp)
-                .height(55.dp),
-            shape = CircleShape,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            trailingIcon = {
-                if (isEmailValid) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.solana_logo),
-                        contentDescription = "Valid Email",
-                        tint = Color.Green
-                    )
-                }
-            }
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = { },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp)
-                .height(48.dp),
-            colors = ButtonDefaults.buttonColors(BlueStart)
-        ) {
+@Composable
+fun SignInOrSignUp(
+    signIn: String,
+    signUp: String
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        TextButton(onClick = { }) {
             Text(
-                text = "Sign in"
+                text = signIn,
+                color = Color.Black,
+                fontFamily = FontFamily(Font(R.font.breeserif))
             )
         }
+        TextButton(onClick = { }) {
+            Text(
+                text = signUp,
+                color = Color.Gray,
+                fontFamily = FontFamily(Font(R.font.breeserif))
+            )
+        }
+    }
+}
 
+@Composable
+fun SocialSignIn(
+    text: String,
+    onSignInClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "Or Continue With",
+            text = text,
             fontSize = 12.sp,
-            color = Color.Gray
+            color = Color.Gray,
+            fontFamily = FontFamily(Font(R.font.breeserif))
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Box(
                 modifier = Modifier
@@ -205,9 +207,7 @@ fun LoginScreen(
                     .clip(CircleShape)
                     .border(1.dp, Color.Gray, CircleShape)
             ) {
-                IconButton(
-                    onClick = { onSignInClick() }
-                ) {
+                IconButton(onClick = { onSignInClick() }) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_google),
                         contentDescription = "Google Button",
@@ -216,15 +216,19 @@ fun LoginScreen(
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Text(
-            text = "Join the millions of smart investors who trust us to manage their finances. Log in to access your personalized dashboard, track your portfolio performance, and make informed investment decisions.",
-            fontSize = 12.sp,
-            color = Color.Gray,
-            modifier = Modifier.padding(16.dp),
-            textAlign = TextAlign.Center
-        )
     }
+}
+
+@Composable
+fun InformativeText(
+    text: String
+) {
+    Text(
+        text = text,
+        fontSize = 12.sp,
+        color = Color.Gray,
+        modifier = Modifier.padding(16.dp),
+        textAlign = TextAlign.Center,
+        fontFamily = FontFamily(Font(R.font.breeserif))
+    )
 }

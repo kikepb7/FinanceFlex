@@ -1,4 +1,4 @@
-package com.enriquepalmadev.financeflex.ui.navigation
+package com.enriquepalmadev.financeflex.ui.utils.navigation
 
 import android.app.Activity.RESULT_OK
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -19,13 +19,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.enriquepalmadev.financeflex.ui.coin_feature.view.CoinDetailScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.view.CoinListScreen
-import com.enriquepalmadev.financeflex.ui.coin_feature.view.HomeScreen
+import com.enriquepalmadev.financeflex.ui.home_feature.view.HomeScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinDetailViewModel
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinListViewModel
-import com.enriquepalmadev.financeflex.ui.profile_feature.view.ProfileScreen
 import com.enriquepalmadev.financeflex.ui.login_feature.auth.GoogleAuthUiUser
 import com.enriquepalmadev.financeflex.ui.login_feature.view.LoginScreen
 import com.enriquepalmadev.financeflex.ui.login_feature.viewmodel.LoginViewModel
+import com.enriquepalmadev.financeflex.ui.profile_feature.view.ProfileScreen
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -42,8 +42,8 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val coroutineScope = rememberCoroutineScope()
 
-    NavHost(navController = navController, startDestination = AppScreens.SignInScreen.route) {
-        composable(route = AppScreens.SignInScreen.route) {
+    NavHost(navController = navController, startDestination = AppScreens.LoginScreen.route) {
+        composable(route = AppScreens.LoginScreen.route) {
             val viewModel = viewModel<LoginViewModel>()
             val state by viewModel.state.collectAsState()
 
@@ -64,7 +64,7 @@ fun AppNavigation() {
             LaunchedEffect(key1 = state.isSignInSuccessful) {
                 if (state.isSignInSuccessful) {
                     navController.navigate(AppScreens.HomeScreen.route) {
-                        popUpTo(AppScreens.SignInScreen.route) { inclusive = true }
+                        popUpTo(AppScreens.LoginScreen.route) { inclusive = true }
                     }
                     viewModel.resetState()
                 }
@@ -73,7 +73,16 @@ fun AppNavigation() {
             LoginScreen(
                 state = state,
                 navController = navController,
-                onSignInClick = {
+                onEmailSignInClick = { email, password ->
+                    viewModel.signInWithEmailAndPassword(email, password) {
+                        navController.navigate(AppScreens.HomeScreen.route) {
+                            popUpTo(AppScreens.LoginScreen.route) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                },
+                onGoogleSignInClick = {
                     coroutineScope.launch {
                         val signInIntentSender = googleAuthUiUser.signIn()
                         launcher.launch(
@@ -93,8 +102,9 @@ fun AppNavigation() {
                         googleAuthUiUser.signOut()
                     }
 
-                    navController.navigate(AppScreens.SignInScreen.route)
-                }
+                    navController.navigate(AppScreens.LoginScreen.route)
+                },
+                onCardClick = {}
             )
         }
         composable(route = AppScreens.HomeScreen.route) {

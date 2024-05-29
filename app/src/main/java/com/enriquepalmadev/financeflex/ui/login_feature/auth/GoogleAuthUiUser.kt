@@ -33,6 +33,7 @@ class GoogleAuthUiUser(
         }
         return result?.pendingIntent?.intentSender
     }
+    // TODO --> Fix all the deprecated methods
 
     suspend fun signInWithIntent(intent: Intent): LoginResult {
         val credential = oneTapClient.getSignInCredentialFromIntent(intent)
@@ -46,7 +47,8 @@ class GoogleAuthUiUser(
                     UserData(
                         userId = uid,
                         userName = displayName,
-                        profilePictureUrl = photoUrl?.toString()
+                        profilePictureUrl = photoUrl?.toString(),
+                        userEmail = email
                     )
                 },
                 errorMessage = null
@@ -75,6 +77,7 @@ class GoogleAuthUiUser(
         UserData(
             userId = uid,
             userName = displayName,
+            userEmail = email,
             profilePictureUrl = photoUrl?.toString()
         )
     }

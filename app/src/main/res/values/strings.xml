@@ -6,4 +6,13 @@
     <string name="api_error">API error!</string>
     <string name="exception_error">There\'s an error … !</string>
     <string name="empty_list_error">Seems like there\'re not elements to show …</string>
+    <string name="login_informative_text">Join the millions of smart investors who trust us to manage their finances. Log in to access your personalized dashboard, track your portfolio performance, and make informed investment decisions.</string>
+    <string name="login_welcome_back">Welcome Back</string>
+    <string name="login_enter_your_details">Please enter Your details</string>
+    <string name="login_continue_with">Or Continue With</string>
+    <string name="password_label">Password</string>
+    <string name="email_label">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signature_app">FinanceFlex by Enrique Palma</string>
 </resources>

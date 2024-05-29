@@ -1,4 +1,4 @@
-package com.enriquepalmadev.financeflex.ui.components
+package com.enriquepalmadev.financeflex.ui.utils.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
-import com.enriquepalmadev.financeflex.ui.navigation.AppScreens
+import com.enriquepalmadev.financeflex.ui.utils.navigation.AppScreens
 
 
 data class BottomNavigation(

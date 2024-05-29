@@ -3,6 +3,12 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
+    <color name="shiny_blue">#3B82F6</color>
+    <color name="card_color">#2AFFFFFF</color>
+    <color name="shiny_green">#086C4B</color>
+    <color name="shiny_red">#EF4444</color>
+    <color name="white_background">#9AA4B5</color>
+    <color name="blue_background">#16243F</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

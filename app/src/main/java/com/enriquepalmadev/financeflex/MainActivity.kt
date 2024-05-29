@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.enriquepalmadev.financeflex.ui.navigation.AppNavigation
+import com.enriquepalmadev.financeflex.ui.utils.navigation.AppNavigation
 import com.enriquepalmadev.financeflex.ui.theme.FinanceFlexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
