@@ -15,4 +15,10 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="signature_app">FinanceFlex by Enrique Palma</string>
+    <string name="not_operation_yet">Añade una operación</string>
+    <string name="add_invest">Introducir</string>
+    <string name="amount_portfolio">Cantidad</string>
+    <string name="average_amount_portfolio">Precio medio</string>
+    <string name="invest_portfolio">Inversión</string>
+    <string name="search_label">Buscar…</string>
 </resources>

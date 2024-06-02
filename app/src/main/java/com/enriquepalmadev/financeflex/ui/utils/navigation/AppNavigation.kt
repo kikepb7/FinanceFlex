@@ -26,6 +26,11 @@ import com.enriquepalmadev.financeflex.ui.login_feature.auth.GoogleAuthUiUser
 import com.enriquepalmadev.financeflex.ui.login_feature.view.LoginScreen
 import com.enriquepalmadev.financeflex.ui.login_feature.viewmodel.LoginViewModel
 import com.enriquepalmadev.financeflex.ui.profile_feature.view.ProfileScreen
+import com.enriquepalmadev.financeflex.ui.stock_feature.view.CompanyDetailScreen
+import com.enriquepalmadev.financeflex.ui.stock_feature.view.CompanyListingsScreen
+import com.enriquepalmadev.financeflex.ui.stock_feature.viewmodel.CompanyInfoViewModel
+import com.enriquepalmadev.financeflex.ui.stock_feature.viewmodel.CompanyListingsEvent
+import com.enriquepalmadev.financeflex.ui.stock_feature.viewmodel.CompanyListingsViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -137,6 +142,36 @@ fun AppNavigation() {
                 CoinDetailScreen(
                     state = screenState,
                 )
+            }
+        }
+        composable(route = AppScreens.StockListScreen.route) {
+            val viewModel: CompanyListingsViewModel = hiltViewModel()
+
+            CompanyListingsScreen(
+                navController = navController,
+                state = viewModel.state,
+                onSearchQueryChange = { query ->
+                    viewModel.onEvent(CompanyListingsEvent.OnSearchQueryChange(query))
+                },
+                onRefresh = {
+                    viewModel.onEvent(CompanyListingsEvent.Refresh)
+                },
+                onCompanyClick = { symbol ->
+                    navController.navigate(AppScreens.StockDetailScreen.createRoute(symbol))
+                }
+            )
+        }
+        composable(
+            route = AppScreens.StockDetailScreen.route,
+            arguments = listOf(navArgument("symbol") {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val symbol = backStackEntry.arguments?.getString("symbol")
+            val viewModel : CompanyInfoViewModel = hiltViewModel()
+
+            if (symbol != null) {
+                CompanyDetailScreen(symbol = symbol)
             }
         }
     }

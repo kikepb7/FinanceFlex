@@ -71,6 +71,7 @@ fun FinanceSection(navController: NavController) {
     Column(
         modifier = Modifier
             .padding(top = 16.dp)
+            .background(color = MaterialTheme.colorScheme.secondary)
     ) {
 
         LazyRow {
@@ -100,7 +101,7 @@ fun FinanceItem(
                 .size(90.dp)
                 .clickable {
                     when (finance.name) {
-//                        "Stocks" -> navController.navigate(AppScreens.CompanyListingsScreen.route)
+                        "Stocks" -> navController.navigate(AppScreens.StockListScreen.route)
                         "Crypto" -> navController.navigate(AppScreens.CoinListScreen.route)
                     }
                 }

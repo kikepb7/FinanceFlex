@@ -125,8 +125,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     kapt("androidx.hilt:hilt-compiler:$hiltCompiler")
 
+    // MOSHI
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-
 
     // EXTENDED ICONS
     implementation("androidx.compose.material:material-icons-extended:${extendedIcons}")
