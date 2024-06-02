@@ -1,28 +1,31 @@
 package com.enriquepalmadev.financeflex.ui.utils
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import com.enriquepalmadev.financeflex.R
 import com.enriquepalmadev.financeflex.domain.coin_feature.model.FailureDomain
 import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenEmpty
-import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenError
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.ScreenError
 
-fun FailureDomain.toComicListScreenError(): CoinListScreenError {
+fun FailureDomain.toComicListScreenError(): ScreenError {
     return when (this) {
         is FailureDomain.ApiError -> {
-            CoinListScreenError(
+            ScreenError(
                 image = R.drawable.error_logo,
-                errorMsg = R.string.api_error
+                errorMsg = R.string.connection_error
             )
         }
 
         is FailureDomain.Unauthorized -> {
-            CoinListScreenError(
+            ScreenError(
                 image = R.drawable.error_logo,
                 errorMsg = R.string.authentication_error
             )
         }
 
         is FailureDomain.UnknownHostError -> {
-            CoinListScreenError(
+            ScreenError(
                 image = R.drawable.error_logo,
                 errorMsg = R.string.unexpected_error
             )
@@ -30,8 +33,8 @@ fun FailureDomain.toComicListScreenError(): CoinListScreenError {
     }
 }
 
-fun Throwable.toComicListScreenError(): CoinListScreenError {
-    return CoinListScreenError(
+fun Throwable.toComicListScreenError(): ScreenError {
+    return ScreenError(
         image = R.drawable.error_logo,
         errorMsg = R.string.exception_error
     )
@@ -42,4 +45,9 @@ fun toEmptyListModel(): CoinListScreenEmpty {
         image = R.drawable.ic_launcher_background,
         emptyMessage = R.string.empty_list_error
     )
+}
+
+fun openUrl(context: Context, url: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    context.startActivity(intent)
 }

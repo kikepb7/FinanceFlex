@@ -63,26 +63,18 @@ import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoEntit
 import com.enriquepalmadev.financeflex.data.portfolio_feature.database.addDate
 import com.enriquepalmadev.financeflex.ui.home_feature.viemodel.TodoViewModel
 
-
 @Composable
 fun PortfolioSection(
     viewModel: TodoViewModel = hiltViewModel()
 ) {
     val todos by viewModel.todos.collectAsState()
-    val (dialogOpen, setDialogOpen) = remember {
-        mutableStateOf(false)
-    }
+    val (dialogOpen, setDialogOpen) = remember { mutableStateOf(false) }
 
     if (dialogOpen) {
-        val (invest, setInvest) = remember {
-            mutableStateOf("")
-        }
-        val (amount, setAmount) = remember {
-            mutableStateOf("")
-        }
-        val (avgPrice, setAveragePrice) = remember {
-            mutableStateOf("")
-        }
+        val (invest, setInvest) = remember { mutableStateOf("") }
+        val (amount, setAmount) = remember { mutableStateOf("") }
+        val (avgPrice, setAveragePrice) = remember { mutableStateOf("") }
+
         Dialog(onDismissRequest = { setDialogOpen(false) }) {
             Column(
                 modifier = Modifier
@@ -350,3 +342,13 @@ fun LazyItemScope.TodoItem(
         )
     }
 }
+
+
+/*
+private fun <T> Iterable<T>.sumOf(selector: (T) -> Float): Float {
+    var sum = 0f
+    for (element in this) {
+        sum += selector(element)
+    }
+    return sum
+}*/

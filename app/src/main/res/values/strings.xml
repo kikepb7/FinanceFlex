@@ -3,7 +3,6 @@
     <string name="web_client_id">569247559405-5pggciqb6br1p1k2h5s9qr8lh9800kvr.apps.googleusercontent.com</string>
     <string name="unexpected_error">Unexpected error!</string>
     <string name="authentication_error">Authentication error!</string>
-    <string name="api_error">API error!</string>
     <string name="exception_error">There\'s an error … !</string>
     <string name="empty_list_error">Seems like there\'re not elements to show …</string>
     <string name="login_informative_text">Join the millions of smart investors who trust us to manage their finances. Log in to access your personalized dashboard, track your portfolio performance, and make informed investment decisions.</string>
@@ -21,4 +20,7 @@
     <string name="average_amount_portfolio">Precio medio</string>
     <string name="invest_portfolio">Inversión</string>
     <string name="search_label">Buscar…</string>
+    <string name="connection_error">Ha habido un problema de conexión!</string>
+    <string name="image_error_content_description">Image Error</string>
+    <string name="budget_label">Budget</string>
 </resources>

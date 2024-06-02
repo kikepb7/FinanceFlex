@@ -9,6 +9,6 @@ data class CoinDetailScreenModel(
 data class CoinDetailScreenState(
     val coinDetailScreenData: CoinDetailScreenModel? = null,
     val loadingScreenData: CoinListScreenLoading = CoinListScreenLoading(loader = true),
-    val errorScreenData: CoinListScreenError? = null,
+    val errorScreenData: ScreenError? = null,
     val emptyListScreenData: CoinListScreenEmpty? = null
 )

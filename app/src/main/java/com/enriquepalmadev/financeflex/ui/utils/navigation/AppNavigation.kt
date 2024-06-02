@@ -17,11 +17,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.enriquepalmadev.financeflex.R
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.ScreenError
 import com.enriquepalmadev.financeflex.ui.coin_feature.view.CoinDetailScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.view.CoinListScreen
-import com.enriquepalmadev.financeflex.ui.home_feature.view.HomeScreen
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinDetailViewModel
 import com.enriquepalmadev.financeflex.ui.coin_feature.viewmodel.CoinListViewModel
+import com.enriquepalmadev.financeflex.ui.home_feature.view.HomeScreen
 import com.enriquepalmadev.financeflex.ui.login_feature.auth.GoogleAuthUiUser
 import com.enriquepalmadev.financeflex.ui.login_feature.view.LoginScreen
 import com.enriquepalmadev.financeflex.ui.login_feature.viewmodel.LoginViewModel
@@ -141,6 +143,7 @@ fun AppNavigation() {
             state?.let { screenState ->
                 CoinDetailScreen(
                     state = screenState,
+                    onLinkClicked = {}
                 )
             }
         }
@@ -168,10 +171,16 @@ fun AppNavigation() {
             })
         ) { backStackEntry ->
             val symbol = backStackEntry.arguments?.getString("symbol")
-            val viewModel : CompanyInfoViewModel = hiltViewModel()
+            val viewModel: CompanyInfoViewModel = hiltViewModel()
 
             if (symbol != null) {
-                CompanyDetailScreen(symbol = symbol)
+                CompanyDetailScreen(
+                    symbol = symbol,
+                    screenError = ScreenError(
+                        image = R.drawable.error_logo,
+                        errorMsg = R.string.connection_error
+                    )
+                )
             }
         }
     }

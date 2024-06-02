@@ -49,5 +49,4 @@ class TodoViewModel @Inject constructor(
             repo.addTodo(todo = todo)
         }
     }
-
 }

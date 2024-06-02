@@ -12,7 +12,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,14 +22,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.ScreenError
+import com.enriquepalmadev.financeflex.ui.coin_feature.view.ErrorScreen
 import com.enriquepalmadev.financeflex.ui.stock_feature.viewmodel.CompanyInfoViewModel
-import com.enriquepalmadev.financeflex.ui.theme.DarkBlue
 import com.enriquepalmadev.financeflex.ui.theme.TransparentBlueEnd
 import com.enriquepalmadev.financeflex.ui.theme.TransparentGreenEnd
 
 @Composable
 fun CompanyDetailScreen(
     symbol: String,
+    screenError: ScreenError,
     viewModel: CompanyInfoViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
@@ -44,7 +45,7 @@ fun CompanyDetailScreen(
             state.company?.let { company ->
                 Card(
                     colors = CardDefaults.cardColors(TransparentBlueEnd),
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp)
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp)
@@ -116,9 +117,11 @@ fun CompanyDetailScreen(
         if(state.isLoading) {
             CircularProgressIndicator()
         } else if(state.error != null) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colorScheme.error
+            ErrorScreen(
+                screenError = ScreenError(
+                    image = screenError.image,
+                    errorMsg = screenError.errorMsg
+                )
             )
         }
     }

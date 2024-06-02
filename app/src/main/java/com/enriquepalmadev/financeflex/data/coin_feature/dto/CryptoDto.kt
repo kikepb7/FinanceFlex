@@ -37,6 +37,8 @@ data class CoinDetailDto(
     val tags: List<TagDto>,
     val team: List<TeamMemberDto>,
     val type: String,
+    @SerializedName("logo")
+    val logo: String,
     val whitepaper: WhitepaperDto
 )
 
@@ -47,7 +49,7 @@ data class CoinDto(
     val name: String,
     val rank: Int,
     val symbol: String,
-    val type: String
+    val type: String,
 )
 
 data class LinksDto(

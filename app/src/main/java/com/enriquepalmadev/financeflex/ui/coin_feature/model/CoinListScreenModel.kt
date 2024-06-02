@@ -6,7 +6,7 @@ data class CoinListScreenLoading(
     val loader: Boolean
 )
 
-data class CoinListScreenError(
+data class ScreenError(
     val image: Int,
     val errorMsg: Int
 )
@@ -31,6 +31,6 @@ data class CoinListScreenModel(
 data class CoinListScreenState(
     val coinScreenData: CoinListScreenModel? = null,
     val loadingScreenData: CoinListScreenLoading = CoinListScreenLoading(loader = true),
-    val errorScreenData: CoinListScreenError? = null,
+    val errorScreenData: ScreenError? = null,
     val emptyListScreenData: CoinListScreenEmpty? = null
 )

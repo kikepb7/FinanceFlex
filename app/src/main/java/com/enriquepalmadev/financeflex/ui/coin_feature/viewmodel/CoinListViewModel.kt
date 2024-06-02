@@ -26,7 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
     private val fetchCoinListUseCase: FetchCoinListUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(CoinListScreenState())
     val state: StateFlow<CoinListScreenState?> = _state.asStateFlow()
@@ -45,8 +45,13 @@ class CoinListViewModel @Inject constructor(
                 .catch { throwableError -> manageError(throwableError = throwableError) }
                 .collect { result ->
                     when (result) {
-                        is Either.Failure -> { manageFailure(error = result.error) }
-                        is Either.Success -> { manageSuccess(result.data) }
+                        is Either.Failure -> {
+                            manageFailure(error = result.error)
+                        }
+
+                        is Either.Success -> {
+                            manageSuccess(result.data)
+                        }
                     }
                 }
         }
@@ -83,7 +88,9 @@ class CoinListViewModel @Inject constructor(
             _state.update { coinScreenState ->
                 coinScreenState.copy(
                     coinScreenData = CoinListScreenModel(
-                        coinListModel = CoinListModel(coinsModel = data.map { CoinListScreenItemModel(coin = it) }) //TODO --> Error, recibe null
+                        coinListModel = CoinListModel(coinsModel = data.map {
+                            CoinListScreenItemModel(coin = it)
+                        }) //TODO --> Error, recibe null
                     ),
                     loadingScreenData = CoinListScreenLoading(loader = false)
                 )

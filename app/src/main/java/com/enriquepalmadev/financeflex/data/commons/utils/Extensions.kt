@@ -36,7 +36,7 @@ fun CoinDto.dtoToCoinModel(): CoinModel {
         isActive = is_active,
         name = name,
         rank = rank,
-        symbol = symbol
+        symbol = symbol,
     )
 }
 
@@ -49,7 +49,9 @@ fun CoinDetailDto.dtoToCoinDetailModel(): CoinDetailModel {
         rank = rank,
         isActive = isActive,
         tags = tags.map { it.name },
-        team = team
+        team = team,
+        logo = logo,
+        links = links
     )
 }
 

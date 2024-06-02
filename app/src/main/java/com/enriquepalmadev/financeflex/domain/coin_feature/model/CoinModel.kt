@@ -1,5 +1,6 @@
 package com.enriquepalmadev.financeflex.domain.coin_feature.model
 
+import com.enriquepalmadev.financeflex.data.coin_feature.dto.LinksDto
 import com.enriquepalmadev.financeflex.data.coin_feature.dto.TeamMemberDto
 
 data class CoinModel(
@@ -15,8 +16,10 @@ data class CoinDetailModel(
     val name: String,
     val description: String,
     val symbol: String,
+    val logo: String,
     val rank: Int,
     val isActive: Boolean,
     val tags: List<String>,
-    val team: List<TeamMemberDto>
+    val team: List<TeamMemberDto>,
+    val links: LinksDto
 )

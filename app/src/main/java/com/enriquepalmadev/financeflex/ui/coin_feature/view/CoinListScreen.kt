@@ -37,13 +37,19 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.enriquepalmadev.financeflex.R
-import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenError
+import com.enriquepalmadev.financeflex.domain.coin_feature.model.CoinModel
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListModel
 import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenItemModel
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenLoading
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenModel
 import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenState
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.ScreenError
 import com.enriquepalmadev.financeflex.ui.utils.navigation.AppScreens
 
 @Composable
@@ -81,7 +87,7 @@ fun CoinListScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     ErrorScreen(
-                        coinListScreenError = CoinListScreenError(
+                        screenError = ScreenError(
                             image = state.errorScreenData.image,
                             errorMsg = state.errorScreenData.errorMsg
                         )
@@ -195,3 +201,27 @@ fun CoinListItem(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun CoinListScreenPreview() {
+    CoinListScreen(
+        state = CoinListScreenState(
+            loadingScreenData = CoinListScreenLoading(loader = false),
+            errorScreenData = null,
+            coinScreenData = CoinListScreenModel(
+                coinListModel = CoinListModel(
+                    coinsModel = listOf(
+                        CoinListScreenItemModel(
+                            coin = CoinModel("1", true, "Bitcoin", 1, "BTC")
+                        ),
+                        CoinListScreenItemModel(
+                            coin = CoinModel("1", true, "Bitcoin", 1, "BTC")
+                        ),
+
+                        )
+                )
+            )
+        ),
+        navController = rememberNavController()
+    )
+}

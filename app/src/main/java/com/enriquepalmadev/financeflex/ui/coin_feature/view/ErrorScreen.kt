@@ -25,11 +25,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enriquepalmadev.financeflex.R
-import com.enriquepalmadev.financeflex.ui.coin_feature.model.CoinListScreenError
+import com.enriquepalmadev.financeflex.ui.coin_feature.model.ScreenError
 
 @Composable
 fun ErrorScreen(
-    coinListScreenError: CoinListScreenError
+    screenError: ScreenError
 ) {
     Box(
         modifier = Modifier
@@ -49,14 +49,14 @@ fun ErrorScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Image(
-                    painter = painterResource(id = coinListScreenError.image),
-                    contentDescription = "Image Error"
+                    painter = painterResource(id = screenError.image),
+                    contentDescription = stringResource(R.string.image_error_content_description)
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = stringResource(id = coinListScreenError.errorMsg),
+                    text = stringResource(id = screenError.errorMsg),
                     style = TextStyle(
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
@@ -74,7 +74,7 @@ fun ErrorScreen(
 @Composable
 fun ErrorScreenPreview() {
     ErrorScreen(
-        coinListScreenError = CoinListScreenError(
+        screenError = ScreenError(
             image = R.drawable.error_logo,
             errorMsg = R.string.unexpected_error
         )
