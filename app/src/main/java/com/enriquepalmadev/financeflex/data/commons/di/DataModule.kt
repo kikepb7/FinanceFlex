@@ -14,7 +14,6 @@ import com.enriquepalmadev.financeflex.data.stock_feature.database.StockDatabase
 import com.enriquepalmadev.financeflex.data.stock_feature.service.StockService
 import com.enriquepalmadev.financeflex.domain.coin_feature.CoinRepository
 import com.enriquepalmadev.financeflex.domain.portfolio_feature.TodoRepository
-import com.enriquepalmadev.financeflex.ui.utils.navigation.AppScreens
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
