@@ -50,7 +50,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -60,19 +59,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.enriquepalmadev.financeflex.R
-import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoEntity
+import com.enriquepalmadev.financeflex.data.portfolio_feature.database.InvestEntity
 import com.enriquepalmadev.financeflex.data.portfolio_feature.database.addDate
-import com.enriquepalmadev.financeflex.presentation.home_feature.viemodel.TodoViewModel
+import com.enriquepalmadev.financeflex.presentation.home_feature.viemodel.PortfolioViewModel
 import com.enriquepalmadev.financeflex.presentation.theme.Blue50
-import com.enriquepalmadev.financeflex.presentation.theme.CustomBlack
-import com.enriquepalmadev.financeflex.presentation.theme.CustomGreen
 import com.enriquepalmadev.financeflex.presentation.theme.Green200
 import com.enriquepalmadev.financeflex.presentation.theme.Green500
 import com.enriquepalmadev.financeflex.presentation.theme.Green700
 
 @Composable
 fun PortfolioSection(
-    viewModel: TodoViewModel = hiltViewModel()
+    viewModel: PortfolioViewModel = hiltViewModel()
 ) {
     val todos by viewModel.todos.collectAsState()
     val (dialogOpen, setDialogOpen) = remember { mutableStateOf(false) }
@@ -133,8 +130,8 @@ fun PortfolioSection(
                 Button(
                     onClick = {
                         if (amount.isNotEmpty() && avgPrice.isNotEmpty() && invest.isNotEmpty()) {
-                            viewModel.addTodo(
-                                TodoEntity(
+                            viewModel.addInvest(
+                                InvestEntity(
                                     avgPrice = amount,
                                     amount = avgPrice,
                                     invest = invest
@@ -218,9 +215,9 @@ fun PortfolioSection(
                     }) { todo ->
                         TodoItem(
                             todo = todo,
-                            onClick = { viewModel.updateTodo(todo.copy(done = !todo.done)) },
+                            onClick = { viewModel.updateInvest(todo.copy(done = !todo.done)) },
                             onDelete = {
-                                viewModel.deleteTodo(todo)
+                                viewModel.deleteInvest(todo)
                             })
                     }
                 }
@@ -232,7 +229,7 @@ fun PortfolioSection(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LazyItemScope.TodoItem(
-    todo: TodoEntity,
+    todo: InvestEntity,
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {

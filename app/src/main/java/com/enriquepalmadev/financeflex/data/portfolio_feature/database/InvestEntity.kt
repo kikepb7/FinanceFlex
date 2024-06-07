@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 import java.text.SimpleDateFormat
 import java.util.Date
 
-@Entity(tableName = "todos")
-data class TodoEntity(
+@Entity(tableName = "invests")
+data class InvestEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "invest")
@@ -22,4 +22,4 @@ data class TodoEntity(
     val added: Long = System.currentTimeMillis()
 )
 
-val TodoEntity.addDate: String get() = SimpleDateFormat("yyyy/MM/dd hh:mm").format(Date(added))
+val InvestEntity.addDate: String get() = SimpleDateFormat("yyyy/MM/dd hh:mm").format(Date(added))

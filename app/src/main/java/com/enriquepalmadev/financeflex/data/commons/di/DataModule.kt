@@ -6,8 +6,8 @@ import com.enriquepalmadev.financeflex.data.coin_feature.datasource.CoinRemoteDa
 import com.enriquepalmadev.financeflex.data.coin_feature.repository.CoinRepositoryImpl
 import com.enriquepalmadev.financeflex.data.coin_feature.service.CryptoService
 import com.enriquepalmadev.financeflex.data.commons.utils.Constants
-import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoDao
-import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoDatabase
+import com.enriquepalmadev.financeflex.data.portfolio_feature.database.InvestDao
+import com.enriquepalmadev.financeflex.data.portfolio_feature.database.InvestDatabase
 import com.enriquepalmadev.financeflex.data.portfolio_feature.repository.TodoRepositoryImpl
 import com.enriquepalmadev.financeflex.data.stock_feature.database.StockDao
 import com.enriquepalmadev.financeflex.data.stock_feature.database.StockDatabase
@@ -75,21 +75,21 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(application: Application): TodoDatabase {
-        return Room.databaseBuilder(application, TodoDatabase::class.java, "todo_db")
+    fun provideDatabase(application: Application): InvestDatabase {
+        return Room.databaseBuilder(application, InvestDatabase::class.java, "invest_db")
             .fallbackToDestructiveMigration().build()
     }
 
     @Singleton
     @Provides
-    fun provideTodoDao(database: TodoDatabase): TodoDao {
-        return database.todoDao()
+    fun provideTodoDao(database: InvestDatabase): InvestDao {
+        return database.investDao()
     }
 
     @Singleton
     @Provides
-    fun provideTodoRepository(todoDao: TodoDao): TodoRepository {
-        return TodoRepositoryImpl(todoDao)
+    fun provideTodoRepository(investDao: InvestDao): TodoRepository {
+        return TodoRepositoryImpl(investDao)
     }
 
     @Singleton

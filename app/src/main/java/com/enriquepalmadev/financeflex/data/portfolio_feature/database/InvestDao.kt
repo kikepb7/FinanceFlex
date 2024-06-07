@@ -8,16 +8,16 @@ import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface TodoDao {
+interface InvestDao {
     @Insert
-    fun addTodo(todo: TodoEntity)
+    fun addInvest(invest: InvestEntity)
 
-    @Query("SELECT * FROM todos ")
-    fun getTodos(): Flow<List<TodoEntity>>
+    @Query("SELECT * FROM invests")
+    fun getInvest(): Flow<List<InvestEntity>>
 
     @Update
-    fun updateTodo(todo: TodoEntity)
+    fun updateInvest(todo: InvestEntity)
 
     @Delete
-    fun deleteTodo(todo: TodoEntity)
+    fun deleteInvest(todo: InvestEntity)
 }

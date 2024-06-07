@@ -2,7 +2,7 @@ package com.enriquepalmadev.financeflex.presentation.home_feature.viemodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoEntity
+import com.enriquepalmadev.financeflex.data.portfolio_feature.database.InvestEntity
 import com.enriquepalmadev.financeflex.domain.portfolio_feature.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,18 +13,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoViewModel @Inject constructor(
+class PortfolioViewModel @Inject constructor(
     private val repo: TodoRepository
 ): ViewModel() {
 
-    private val _todos : MutableStateFlow<List<TodoEntity>> = MutableStateFlow(emptyList())
+    private val _todos : MutableStateFlow<List<InvestEntity>> = MutableStateFlow(emptyList())
     val todos = _todos.asStateFlow()
 
     init {
-        getTodos()
+        getInvests()
     }
 
-    private fun getTodos() {
+    private fun getInvests() {
         viewModelScope.launch(Dispatchers.IO){
             repo.getTodos().collect{ data ->
                 _todos.update { data }
@@ -32,21 +32,21 @@ class TodoViewModel @Inject constructor(
         }
     }
 
-    fun updateTodo(todo: TodoEntity) {
+    fun updateInvest(invest: InvestEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.updateTodo(todo = todo)
+            repo.updateTodo(todo = invest)
         }
     }
 
-    fun deleteTodo(todo: TodoEntity) {
+    fun deleteInvest(invest: InvestEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.deleteTodo(todo = todo)
+            repo.deleteTodo(todo = invest)
         }
     }
 
-    fun addTodo(todo: TodoEntity) {
+    fun addInvest(invest: InvestEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.addTodo(todo = todo)
+            repo.addTodo(todo = invest)
         }
     }
 }
