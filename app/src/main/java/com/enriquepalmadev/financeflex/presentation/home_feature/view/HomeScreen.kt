@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.enriquepalmadev.financeflex.R
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 
 @Composable
 fun HomeScreen(
@@ -31,7 +32,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(color = Blue50)
             .padding(top = 45.dp)
     ) {
         Row(

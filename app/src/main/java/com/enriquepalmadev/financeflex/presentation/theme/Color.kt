@@ -39,6 +39,7 @@ val Green300 = Color(0xFFA5C981)
 val Green200 = Color(0xFFBFD8A7)
 val Green100 = Color(0xFFD9E7CB)
 val Green50 = Color(0xFFF0F6EA)
+val Blue50 = Color(0xFFEAEDF6)
 
 
 val Green20 = Color(0x80CFF4D2)
@@ -46,3 +47,8 @@ val Green40 = Color(0xFF7CE495)
 val Green70 = Color(0xFF56C596)
 val GreenBlue30 = Color(0xFF329D9C)
 val Blue70 = Color(0xFF205072)
+
+val CustomBlack = Color(0xFF181818)
+val CustomGreen = Color(0xFFBBFB4C)
+val CustomBlue = Color(0xFF5285E8)
+val CustomWhite = Color(0xFFF0F5F4)

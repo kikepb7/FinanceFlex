@@ -69,6 +69,13 @@ dependencies {
     val extendedIcons = "1.6.7"
     val openCsv = "5.5.2"
     val room = "2.6.1"
+    val mockkVersion = "1.13.11"
+    val coroutinesTestVersion = "1.6.4"
+    val archCoreTestVersion = "2.2.0"
+    val turbineVersion = "1.0.0"
+    val jUnitVersion = "4.13.2"
+    val jUnitTestVersion = "1.1.5"
+    val espressoVersion = "3.5.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -152,4 +159,15 @@ dependencies {
 
     // BIOMETRIC
     implementation("androidx.biometric:biometric:1.1.0")
+
+    // TEST
+    testImplementation("junit:junit:$jUnitVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion")
+    testImplementation("androidx.arch.core:core-testing:$archCoreTestVersion")
+    testImplementation("app.cash.turbine:turbine:$turbineVersion")
+
+    androidTestImplementation("androidx.test.ext:junit:$jUnitTestVersion")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
+
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.enriquepalmadev.financeflex.R
 import com.enriquepalmadev.financeflex.domain.stock_feature.model.CompanyListing
 import com.enriquepalmadev.financeflex.presentation.stock_feature.model.CompanyListingsState
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.theme.BlueEnd
 import com.enriquepalmadev.financeflex.presentation.theme.Green20
 import com.enriquepalmadev.financeflex.presentation.theme.TransparentBlueEnd
@@ -60,7 +62,7 @@ fun CompanyListingsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Green20)
+            .background(color = Blue50)
     ) {
         Row(
             modifier = Modifier
@@ -92,14 +94,14 @@ fun CompanyListingsScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
                         .background(
-                            brush = Brush.horizontalGradient(listOf(TransparentBlueEnd, BlueEnd)),
-                            shape = CutCornerShape(0.dp, 35.dp, 0.dp, 0.dp)
+                            brush = Brush.horizontalGradient(listOf(Blue50, BlueEnd)),
+                            shape = CutCornerShape(0.dp, 35.dp, 35.dp, 0.dp)
                         )
                         .align(Alignment.CenterHorizontally),
                     value = state.searchQuery,
                     onValueChange = onSearchQueryChange,
                     textStyle = TextStyle(
-                        color = Color.White, fontSize = 20.sp, fontFamily = FontFamily(
+                        color = Color.Black, fontSize = 12.sp, fontFamily = FontFamily(
                             Font(R.font.breeserif)
                         )
                     ),

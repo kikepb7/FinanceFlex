@@ -23,4 +23,9 @@
     <string name="connection_error">Ha habido un problema de conexión!</string>
     <string name="image_error_content_description">Image Error</string>
     <string name="budget_label">Budget</string>
+    <string name="cryptos_header_label">Cryptos</string>
+    <string name="team_members">Miembros del equipo</string>
+    <string name="working_on_it">Estamos trabajando en esto ...</string>
+    <string name="working_screen_description">Imagen de pantalla en construcción</string>
+    <string name="sorry_working_screen">¡Disculpe las molestias!</string>
 </resources>

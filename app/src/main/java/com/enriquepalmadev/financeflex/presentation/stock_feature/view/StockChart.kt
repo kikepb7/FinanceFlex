@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enriquepalmadev.financeflex.domain.stock_feature.model.IntradayInfo
+import com.enriquepalmadev.financeflex.presentation.theme.CustomGreen
 import kotlin.math.round
 import kotlin.math.roundToInt
 

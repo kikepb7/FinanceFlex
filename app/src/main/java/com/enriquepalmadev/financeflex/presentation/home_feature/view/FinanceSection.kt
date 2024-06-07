@@ -29,8 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.utils.navigation.AppScreens
 import com.enriquepalmadev.financeflex.presentation.theme.BlueStart
+import com.enriquepalmadev.financeflex.presentation.theme.CustomBlue
+import com.enriquepalmadev.financeflex.presentation.theme.CustomGreen
+import com.enriquepalmadev.financeflex.presentation.theme.CustomWhite
 import com.enriquepalmadev.financeflex.presentation.theme.Green200
 import com.enriquepalmadev.financeflex.presentation.theme.GreenStart
 import com.enriquepalmadev.financeflex.presentation.theme.OrangeStart
@@ -73,7 +77,7 @@ fun FinanceSection(navController: NavController) {
     Column(
         modifier = Modifier
             .padding(top = 16.dp)
-            .background(color = Color.White)
+            .background(color = Blue50)
     ) {
 
         LazyRow {

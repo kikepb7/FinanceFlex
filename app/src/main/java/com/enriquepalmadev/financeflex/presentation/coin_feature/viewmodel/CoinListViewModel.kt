@@ -38,7 +38,7 @@ class CoinListViewModel @Inject constructor(
         getCoinList()
     }
 
-    private fun getCoinList() {
+    fun getCoinList() {
         viewModelScope.launch {
             fetchCoinListUseCase.fetchCoinList()
                 .onStart { manageLoading() }

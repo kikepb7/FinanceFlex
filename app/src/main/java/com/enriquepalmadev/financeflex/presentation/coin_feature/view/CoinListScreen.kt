@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +19,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.rounded.CurrencyExchange
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -30,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -49,8 +55,11 @@ import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListS
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListScreenModel
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListScreenState
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.ScreenError
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.theme.Green200
+import com.enriquepalmadev.financeflex.presentation.theme.Green700
 import com.enriquepalmadev.financeflex.presentation.theme.Green800
+import com.enriquepalmadev.financeflex.presentation.theme.TransparentBlueEnd
 import com.enriquepalmadev.financeflex.presentation.utils.navigation.AppScreens
 
 @Composable
@@ -61,7 +70,7 @@ fun CoinListScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(color = Blue50)
     ) {
         when {
             state.loadingScreenData.loader -> {
@@ -105,7 +114,7 @@ fun CoinListScreen(
                         Text(
                             modifier = Modifier
                                 .padding(top = 12.dp),
-                            text = "Cryptos",
+                            text = stringResource(R.string.cryptos_header_label),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily(Font(R.font.breeserif))
@@ -121,10 +130,8 @@ fun CoinListScreen(
                                     coinItemModel = coin,
                                     navController = navController,
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            navController.navigate("${AppScreens.CoinDetailScreen.route}/${coin.coin.id}")
-                                        }
+                                        .fillMaxWidth(),
+                                    onCryptoClick = { navController.navigate("${AppScreens.CoinDetailScreen.route}/${coin.coin.id}") }
                                 )
                             }
                         }
@@ -139,60 +146,85 @@ fun CoinListScreen(
 fun CoinListItem(
     navController: NavController,
     coinItemModel: CoinListScreenItemModel,
+    onCryptoClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
-            .padding(start = 32.dp, end = 32.dp, top = 12.dp)
+            .padding(start = 32.dp, end = 32.dp, top = 8.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(1.dp, Color.Transparent, shape = RoundedCornerShape(8.dp)),
-        colors = CardDefaults.cardColors(Green200),
+            .border(1.dp, Color.Black, shape = RoundedCornerShape(8.dp)),
+        colors = CardDefaults.cardColors(TransparentBlueEnd),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                imageVector = Icons.Rounded.CurrencyExchange,
-                tint = Color.Blue,
-                contentDescription = "Coin Icon"
-            )
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Divider(
-                color = Color.Black,
-                modifier = Modifier
-                    .width(1.dp)
-                    .height(40.dp)
-            )
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Column(
-                verticalArrangement = Arrangement.Center
+            Row(
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "${coinItemModel.coin.rank}. ${coinItemModel.coin.name} (${coinItemModel.coin.symbol})",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontFamily = FontFamily(Font(R.font.breeserif)),
-                    fontSize = 16.sp,
-                    overflow = TextOverflow.Ellipsis
+                Icon(
+                    imageVector = Icons.Rounded.CurrencyExchange,
+                    tint = Color.Blue,
+                    contentDescription = "Coin Icon"
                 )
-                Text(
-                    text = if (coinItemModel.coin.isActive) "ACTIVE" else "INACTIVE",
-                    color = if (coinItemModel.coin.isActive) Green800 else colorResource(id = R.color.shiny_red),
-                    fontStyle = FontStyle.Italic,
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.breeserif)),
-                    textAlign = TextAlign.End,
-                    style = MaterialTheme.typography.bodyLarge
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Divider(
+                    color = Color.Black,
+                    modifier = Modifier
+                        .width(1.dp)
+                        .height(40.dp)
+                )
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Column(
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "${coinItemModel.coin.rank}. ${coinItemModel.coin.name} (${coinItemModel.coin.symbol})",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontFamily = FontFamily(Font(R.font.breeserif)),
+                        fontSize = 16.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = if (coinItemModel.coin.isActive) "ACTIVE" else "INACTIVE",
+                        color = if (coinItemModel.coin.isActive) Green800 else colorResource(id = R.color.shiny_red),
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily(Font(R.font.breeserif)),
+                        textAlign = TextAlign.End,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Button(
+                onClick = { onCryptoClick(coinItemModel.coin.symbol) },
+                colors = ButtonDefaults.buttonColors(Green700),
+                shape = RoundedCornerShape(30),
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 48.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                    contentDescription = "Flecha",
+                    tint = Color.White,
                 )
             }
         }
     }
+
 }
 
 @Preview(showBackground = true)

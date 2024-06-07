@@ -50,6 +50,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -62,6 +63,9 @@ import com.enriquepalmadev.financeflex.R
 import com.enriquepalmadev.financeflex.data.portfolio_feature.database.TodoEntity
 import com.enriquepalmadev.financeflex.data.portfolio_feature.database.addDate
 import com.enriquepalmadev.financeflex.presentation.home_feature.viemodel.TodoViewModel
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
+import com.enriquepalmadev.financeflex.presentation.theme.CustomBlack
+import com.enriquepalmadev.financeflex.presentation.theme.CustomGreen
 import com.enriquepalmadev.financeflex.presentation.theme.Green200
 import com.enriquepalmadev.financeflex.presentation.theme.Green500
 import com.enriquepalmadev.financeflex.presentation.theme.Green700
@@ -159,7 +163,7 @@ fun PortfolioSection(
     }
 
     Scaffold(
-        containerColor = Color.White,
+        containerColor = Blue50,
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -170,7 +174,7 @@ fun PortfolioSection(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add todo icon"
+                    contentDescription = "Add todo icon",
                 )
             }
         }
@@ -346,13 +350,3 @@ fun LazyItemScope.TodoItem(
         )
     }
 }
-
-
-/*
-private fun <T> Iterable<T>.sumOf(selector: (T) -> Float): Float {
-    var sum = 0f
-    for (element in this) {
-        sum += selector(element)
-    }
-    return sum
-}*/

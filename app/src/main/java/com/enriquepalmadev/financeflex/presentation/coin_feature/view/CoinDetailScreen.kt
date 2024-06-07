@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,9 +19,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -47,6 +53,7 @@ import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinDetai
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinDetailScreenState
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListScreenLoading
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.ScreenError
+import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.theme.Green20
 import com.enriquepalmadev.financeflex.presentation.utils.openUrl
 
@@ -67,7 +74,7 @@ fun CoinDetailScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Green20)
+            .background(color = Blue50)
     ) {
 
         when {
@@ -201,13 +208,12 @@ fun CoinDetailScreen(
                         Spacer(modifier = Modifier.height(32.dp))
 
                         Text(
-                            text = "Team members",
+                            text = stringResource(R.string.team_members),
                             fontSize = 24.sp,
                             fontFamily = FontFamily(Font(R.font.breeserif))
                         )
 
                         Spacer(modifier = Modifier.height(4.dp))
-
 
                     }
 
@@ -219,8 +225,6 @@ fun CoinDetailScreen(
                                     .fillMaxWidth()
                                     .padding(10.dp)
                             )
-
-                            Divider()
                         }
                     }
                 }
@@ -256,24 +260,30 @@ fun TeamListItem(
     teamMember: TeamMemberDto,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
     ) {
-        Text(
-            text = teamMember.name,
-            fontSize = 18.sp,
-            fontFamily = FontFamily(Font(R.font.breeserif))
-        )
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = teamMember.name,
+                fontSize = 18.sp,
+                fontFamily = FontFamily(Font(R.font.breeserif))
+            )
 
-        Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
-        Text(
-            text = teamMember.position,
-            fontSize = 12.sp,
-            fontFamily = FontFamily(Font(R.font.breeserif)),
-            fontStyle = FontStyle.Italic
-        )
+            Text(
+                text = teamMember.position,
+                fontSize = 12.sp,
+                fontFamily = FontFamily(Font(R.font.breeserif)),
+                fontStyle = FontStyle.Italic
+            )
+        }
     }
 }
 
