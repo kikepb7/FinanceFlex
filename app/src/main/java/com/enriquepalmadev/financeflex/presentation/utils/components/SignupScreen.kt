@@ -33,7 +33,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.enriquepalmadev.financeflex.R
 import com.enriquepalmadev.financeflex.presentation.login_feature.view.LogoAndTitle
 import com.enriquepalmadev.financeflex.presentation.login_feature.viewmodel.LoginViewModel

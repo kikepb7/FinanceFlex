@@ -36,7 +36,6 @@ import com.enriquepalmadev.financeflex.presentation.stock_feature.viewmodel.Comp
 import com.enriquepalmadev.financeflex.presentation.utils.components.SignupScreen
 import com.enriquepalmadev.financeflex.presentation.utils.components.WorkingScreen
 import com.google.android.gms.auth.api.identity.Identity
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 @Composable

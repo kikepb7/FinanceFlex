@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -42,8 +41,6 @@ import com.enriquepalmadev.financeflex.domain.stock_feature.model.CompanyListing
 import com.enriquepalmadev.financeflex.presentation.stock_feature.model.CompanyListingsState
 import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.theme.BlueEnd
-import com.enriquepalmadev.financeflex.presentation.theme.Green20
-import com.enriquepalmadev.financeflex.presentation.theme.TransparentBlueEnd
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 

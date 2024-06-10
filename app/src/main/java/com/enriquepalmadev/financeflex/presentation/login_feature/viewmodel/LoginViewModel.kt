@@ -1,7 +1,5 @@
 package com.enriquepalmadev.financeflex.presentation.login_feature.viewmodel
 
-import android.app.AlertDialog
-import android.nfc.Tag
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.coroutines.cancellation.CancellationException
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
     private val _loading = MutableLiveData(false)
@@ -104,7 +102,7 @@ class LoginViewModel: ViewModel() {
             .addOnSuccessListener {
 
             }
-            .addOnFailureListener {  }
+            .addOnFailureListener { }
     }
 }
 
