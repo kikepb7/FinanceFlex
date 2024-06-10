@@ -109,7 +109,7 @@ fun CompanyListingsScreen(
                         Icon(
                             imageVector = Icons.Filled.Search,
                             modifier = Modifier.padding(end = 10.dp),
-                            contentDescription = "Search bar icon",
+                            contentDescription = null,
                             tint = Color.Black
                         )
                     },

@@ -1,5 +1,7 @@
 package com.enriquepalmadev.financeflex.presentation.login_feature.viewmodel
 
+import android.app.AlertDialog
+import android.nfc.Tag
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +9,7 @@ import com.enriquepalmadev.financeflex.presentation.login_feature.model.LoginRes
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -36,7 +39,6 @@ class LoginViewModel: ViewModel() {
     }
 
 
-    // Auth by Email
     fun signInWithEmailAndPassword(
         email: String,
         password: String,
@@ -64,6 +66,45 @@ class LoginViewModel: ViewModel() {
                 )
             }
         }
+    }
+
+    fun createUser(
+        email: String,
+        password: String,
+        home: () -> Unit
+    ) {
+        if (_loading.value == false) {
+            _loading.value = true
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val userName = task.result.user?.email?.split("@")?.get(0)
+                        createUserDatabase(userName)
+                        home()
+                    } else {
+                        _state.value = SignInState(
+                            isSignInSuccessful = false,
+                            signInError = "There's an error with your email or password"
+                        )
+                    }
+                    _loading.value = false
+                }
+        }
+    }
+
+    private fun createUserDatabase(userName: String?) {
+        val userId = auth.currentUser?.uid
+        val user = mutableMapOf<String, Any>()
+
+        user["user_id"] = userId.toString()
+        user["name"] = userName.toString()
+
+        FirebaseFirestore.getInstance().collection("users")
+            .add(user)
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {  }
     }
 }
 

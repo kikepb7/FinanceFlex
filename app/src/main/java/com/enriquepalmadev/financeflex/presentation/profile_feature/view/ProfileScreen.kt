@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -74,7 +75,7 @@ fun ProfileScreen(
             ) {
                 AsyncImage(
                     model = profilePictureUrl,
-                    contentDescription = "Profile picture",
+                    contentDescription = stringResource(R.string.profile_picture_label),
                     modifier = Modifier
                         .size(70.dp)
                         .clip(CircleShape),
@@ -113,7 +114,7 @@ fun ProfileScreen(
             ProfileRowOption(
                 profileRowOption = ProfileRowOption(
                     icon = Icons.Rounded.AccountCircle,
-                    title = "My Profile"
+                    title = stringResource(R.string.my_profile_label)
                 ),
                 onCardClick = { onCardClick() }
             )
@@ -122,7 +123,7 @@ fun ProfileScreen(
             ProfileRowOption(
                 profileRowOption = ProfileRowOption(
                     icon = Icons.Rounded.Settings,
-                    title = "Settings"
+                    title = stringResource(R.string.settings_label)
                 ),
                 onCardClick = { onCardClick() }
             )
@@ -132,7 +133,7 @@ fun ProfileScreen(
             ProfileRowOption(
                 profileRowOption = ProfileRowOption(
                     icon = Icons.Rounded.Notifications,
-                    title = "Notifications"
+                    title = stringResource(R.string.notifications_label)
                 ),
                 onCardClick = { onCardClick() }
             )
@@ -142,7 +143,7 @@ fun ProfileScreen(
             ProfileRowOption(
                 profileRowOption = ProfileRowOption(
                     icon = Icons.Rounded.Info,
-                    title = "About App"
+                    title = stringResource(R.string.about_us_label)
                 ),
                 onCardClick = { onCardClick() }
             )
@@ -152,7 +153,7 @@ fun ProfileScreen(
             ProfileRowOption(
                 profileRowOption = ProfileRowOption(
                     icon = Icons.AutoMirrored.Rounded.Logout,
-                    title = "Logout"
+                    title = stringResource(R.string.logout_label)
                 ),
                 onCardClick = { onSignOut() }
             )

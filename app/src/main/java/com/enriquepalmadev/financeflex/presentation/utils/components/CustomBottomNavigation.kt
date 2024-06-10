@@ -183,7 +183,7 @@ fun CustomBottomNavigation() {
             IconButton(onClick = { }) {
                 Icon(
                     imageVector = image,
-                    contentDescription = "Bottom navigation icons",
+                    contentDescription = null,
                     tint = Color.White
                 )
             }

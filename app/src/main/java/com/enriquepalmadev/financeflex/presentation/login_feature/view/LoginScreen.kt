@@ -39,6 +39,7 @@ import com.enriquepalmadev.financeflex.presentation.utils.components.CustomButto
 import com.enriquepalmadev.financeflex.presentation.utils.components.CustomOutlinedTextField
 import com.enriquepalmadev.financeflex.presentation.login_feature.model.TextFieldData
 import com.enriquepalmadev.financeflex.presentation.login_feature.viewmodel.SignInState
+import com.enriquepalmadev.financeflex.presentation.utils.navigation.AppScreens
 
 @Composable
 fun LoginScreen(
@@ -63,7 +64,8 @@ fun LoginScreen(
         )
         SignInOrSignUp(
             signIn = stringResource(R.string.sign_in),
-            signUp = stringResource(R.string.sign_up)
+            signUp = stringResource(R.string.sign_up),
+            navController = navController
         )
         CustomOutlinedTextField(
             textFieldData = TextFieldData(
@@ -154,7 +156,8 @@ fun WelcomeText(
 @Composable
 fun SignInOrSignUp(
     signIn: String,
-    signUp: String
+    signUp: String,
+    navController: NavController
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
@@ -167,7 +170,9 @@ fun SignInOrSignUp(
                 fontFamily = FontFamily(Font(R.font.breeserif))
             )
         }
-        TextButton(onClick = { }) {
+        TextButton(
+            onClick = { navController.navigate(AppScreens.SignupScreen.route) }
+        ) {
             Text(
                 text = signUp,
                 color = Color.Gray,
@@ -209,7 +214,7 @@ fun SocialSignIn(
                 IconButton(onClick = { onSignInClick() }) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_google),
-                        contentDescription = "Google Button",
+                        contentDescription = "Google",
                         modifier = Modifier.size(24.dp)
                     )
                 }

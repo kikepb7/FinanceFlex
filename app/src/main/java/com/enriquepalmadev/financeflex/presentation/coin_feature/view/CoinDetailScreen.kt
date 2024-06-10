@@ -109,10 +109,9 @@ fun CoinDetailScreen(
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(start = 32.dp, end = 32.dp)
+                        .padding(start = 32.dp, end = 32.dp, bottom = 32.dp)
                 ) {
                     item {
-
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -195,10 +194,10 @@ fun CoinDetailScreen(
 
 
                         FlowRow(
-                            maxItemsInEachRow = 4,
+                            maxItemsInEachRow = 2,
                             modifier = Modifier
                                 .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             coinDetail?.tags?.forEach { tag ->
                                 CoinTag(tag = tag)
@@ -244,7 +243,7 @@ fun CoinTag(
                 color = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(100.dp)
             )
-            .padding(10.dp)
+            .padding(horizontal = 10.dp, vertical = 5.dp)
     ) {
         Text(
             text = tag,

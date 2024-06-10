@@ -33,7 +33,10 @@ import com.enriquepalmadev.financeflex.presentation.stock_feature.view.CompanyLi
 import com.enriquepalmadev.financeflex.presentation.stock_feature.viewmodel.CompanyInfoViewModel
 import com.enriquepalmadev.financeflex.presentation.stock_feature.viewmodel.CompanyListingsEvent
 import com.enriquepalmadev.financeflex.presentation.stock_feature.viewmodel.CompanyListingsViewModel
+import com.enriquepalmadev.financeflex.presentation.utils.components.SignupScreen
+import com.enriquepalmadev.financeflex.presentation.utils.components.WorkingScreen
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 @Composable
@@ -50,6 +53,7 @@ fun AppNavigation() {
     val coroutineScope = rememberCoroutineScope()
 
     NavHost(navController = navController, startDestination = AppScreens.LoginScreen.route) {
+
         composable(route = AppScreens.LoginScreen.route) {
             val viewModel = viewModel<LoginViewModel>()
             val state by viewModel.state.collectAsState()
@@ -112,7 +116,9 @@ fun AppNavigation() {
                         navController.navigate(AppScreens.LoginScreen.route)
                     }
                 },
-                onCardClick = {}
+                onCardClick = {
+                    navController.navigate(AppScreens.WorkingScreen.route)
+                }
             )
         }
         composable(route = AppScreens.HomeScreen.route) {
@@ -183,6 +189,16 @@ fun AppNavigation() {
                     )
                 )
             }
+        }
+        composable(route = AppScreens.SignupScreen.route) {
+
+            SignupScreen(
+                onLoginScreen = { navController.navigate(AppScreens.LoginScreen.route) },
+                viewModel = LoginViewModel()
+            )
+        }
+        composable(route = AppScreens.WorkingScreen.route) {
+            WorkingScreen()
         }
     }
 }

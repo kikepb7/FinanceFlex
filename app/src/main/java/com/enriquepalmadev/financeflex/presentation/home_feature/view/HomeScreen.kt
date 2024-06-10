@@ -55,40 +55,6 @@ fun HomeScreen(
         FinanceSection(navController = navController)
         PortfolioSection()
     }
-
-    /*Scaffold(
-        bottomBar = {
-            BottomNavigationBar(navigation = navController)
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .background(color = Color.White),
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    modifier = Modifier,
-                    text = "Stock Market",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily(Font(R.font.breeserif))
-                )
-            }
-            Spacer(modifier = Modifier.height(32.dp))
-            FinanceSection(navController = navController)
-            // Uncomment if needed
-            // CurrenciesSection()
-            PortfolioSection()
-        }
-    }*/
 }
 
 @Preview(showBackground = true)

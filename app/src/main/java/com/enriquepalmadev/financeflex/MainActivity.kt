@@ -14,8 +14,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
 import com.enriquepalmadev.financeflex.presentation.utils.navigation.AppNavigation
 import com.enriquepalmadev.financeflex.presentation.theme.FinanceFlexTheme
+import com.enriquepalmadev.financeflex.presentation.utils.navigation.AppScreens
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

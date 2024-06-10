@@ -2,14 +2,14 @@ package com.enriquepalmadev.financeflex.presentation.coin_feature.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.rounded.CurrencyExchange
@@ -36,6 +38,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -56,7 +60,6 @@ import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListS
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.CoinListScreenState
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.ScreenError
 import com.enriquepalmadev.financeflex.presentation.theme.Blue50
-import com.enriquepalmadev.financeflex.presentation.theme.Green200
 import com.enriquepalmadev.financeflex.presentation.theme.Green700
 import com.enriquepalmadev.financeflex.presentation.theme.Green800
 import com.enriquepalmadev.financeflex.presentation.theme.TransparentBlueEnd
@@ -170,7 +173,7 @@ fun CoinListItem(
                 Icon(
                     imageVector = Icons.Rounded.CurrencyExchange,
                     tint = Color.Blue,
-                    contentDescription = "Coin Icon"
+                    contentDescription = null
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
@@ -215,16 +218,18 @@ fun CoinListItem(
                 shape = RoundedCornerShape(30),
                 modifier = Modifier
                     .defaultMinSize(minWidth = 48.dp)
+                    .semantics {
+                        contentDescription = R.string.crypto_detail_accessibility.toString()
+                    }
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = "Flecha",
+                    contentDescription = null,
                     tint = Color.White,
                 )
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)

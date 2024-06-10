@@ -113,7 +113,7 @@ fun CompanyItem(
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                                contentDescription = "Flecha",
+                                contentDescription = null,
                                 tint = Color.White,
                             )
                         }

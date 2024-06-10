@@ -28,4 +28,11 @@
     <string name="working_on_it">Estamos trabajando en esto ...</string>
     <string name="working_screen_description">Imagen de pantalla en construcción</string>
     <string name="sorry_working_screen">¡Disculpe las molestias!</string>
+    <string name="crypto_detail_accessibility">Detalle criptomoneda</string>
+    <string name="profile_picture_label">Imagen de perfil</string>
+    <string name="my_profile_label">Mi perfil</string>
+    <string name="settings_label">Ajustes</string>
+    <string name="notifications_label">Notificaciones</string>
+    <string name="about_us_label">Sobre nosotros</string>
+    <string name="logout_label">Logout</string>
 </resources>

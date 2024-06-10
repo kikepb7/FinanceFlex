@@ -30,6 +30,6 @@ fun CustomButton(
         Text(
             text = stringResource(id = R.string.sign_in),
             fontFamily = FontFamily(Font(R.font.breeserif))
-            )
+        )
     }
 }

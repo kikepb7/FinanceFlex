@@ -171,7 +171,7 @@ fun PortfolioSection(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add todo icon",
+                    contentDescription = null,
                 )
             }
         }
