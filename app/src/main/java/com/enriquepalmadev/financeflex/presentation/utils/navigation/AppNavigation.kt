@@ -190,7 +190,6 @@ fun AppNavigation() {
             }
         }
         composable(route = AppScreens.SignupScreen.route) {
-
             SignupScreen(
                 onLoginScreen = { navController.navigate(AppScreens.LoginScreen.route) },
                 viewModel = LoginViewModel()
