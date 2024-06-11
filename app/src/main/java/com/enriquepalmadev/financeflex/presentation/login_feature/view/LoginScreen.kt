@@ -1,6 +1,7 @@
 package com.enriquepalmadev.financeflex.presentation.login_feature.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -54,7 +55,8 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LogoAndTitle(stringResource(id = R.string.app_name))

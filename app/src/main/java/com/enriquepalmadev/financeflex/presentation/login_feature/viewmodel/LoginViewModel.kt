@@ -36,7 +36,6 @@ class LoginViewModel : ViewModel() {
         _state.update { SignInState() }
     }
 
-
     fun signInWithEmailAndPassword(
         email: String,
         password: String,

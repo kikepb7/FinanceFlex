@@ -17,7 +17,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enriquepalmadev.financeflex.domain.stock_feature.model.IntradayInfo
-import com.enriquepalmadev.financeflex.presentation.theme.CustomGreen
 import kotlin.math.round
 import kotlin.math.roundToInt
 
@@ -46,6 +45,7 @@ fun StockChart(
         }
     }
     Canvas(modifier = modifier) {
+        // Dibujo
         val spacePerHour = (size.width - spacing) / infos.size
         (0 until infos.size - 1 step 2).forEach { i ->
             val info = infos[i]
@@ -59,6 +59,7 @@ fun StockChart(
                 )
             }
         }
+        // Precios
         val priceStep = (upperValue - lowerValue) / 5f
         (0..4).forEach { i ->
             drawContext.canvas.nativeCanvas.apply {
@@ -70,6 +71,7 @@ fun StockChart(
                 )
             }
         }
+        // Gráfico
         var lastX = 0f
         val strokePath = Path().apply {
             val height = size.height
@@ -92,6 +94,7 @@ fun StockChart(
                 )
             }
         }
+        // Área de relleno
         val fillPath = android.graphics.Path(strokePath.asAndroidPath())
             .asComposePath()
             .apply {
@@ -109,6 +112,7 @@ fun StockChart(
                 endY = size.height - spacing
             )
         )
+        // Línea del gráfico
         drawPath(
             path = strokePath,
             color = graphColor,

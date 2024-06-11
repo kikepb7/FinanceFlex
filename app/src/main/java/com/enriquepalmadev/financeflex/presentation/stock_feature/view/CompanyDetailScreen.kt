@@ -42,6 +42,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.enriquepalmadev.financeflex.R
 import com.enriquepalmadev.financeflex.presentation.coin_feature.model.ScreenError
 import com.enriquepalmadev.financeflex.presentation.coin_feature.view.ErrorScreen
+import com.enriquepalmadev.financeflex.presentation.coin_feature.view.LoadingScreen
 import com.enriquepalmadev.financeflex.presentation.stock_feature.viewmodel.CompanyInfoViewModel
 import com.enriquepalmadev.financeflex.presentation.theme.Blue50
 import com.enriquepalmadev.financeflex.presentation.theme.GreenBlue30

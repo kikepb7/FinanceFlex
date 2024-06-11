@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CandlestickChart
+import androidx.compose.material.icons.rounded.CurrencyBitcoin
 import androidx.compose.material.icons.rounded.MonetizationOn
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Star
@@ -48,13 +50,13 @@ data class Finance(
 
 val financeList = listOf(
     Finance(
-        icon = Icons.Rounded.Star,
+        icon = Icons.Rounded.CandlestickChart,
         name = "Stocks",
         background = OrangeStart
     ),
 
     Finance(
-        icon = Icons.Rounded.Wallet,
+        icon = Icons.Rounded.CurrencyBitcoin,
         name = "Crypto",
         background = BlueStart
     ),
